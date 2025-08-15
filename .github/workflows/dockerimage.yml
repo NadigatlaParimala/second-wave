@@ -5,11 +5,6 @@ on:
     branches:
       - "main"
   workflow_dispatch:
-    inputs:
-      custom_tags:
-        description: 'Custom Docker tags (comma-separated for multiple tags)'
-        required: false
-        default: '0.1.1'
 
 jobs:
   build-and-deploy:
@@ -30,18 +25,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build images with docker-build
-        run: docker build .
+      - name: Build Docker image
+        run: docker build -t nadigatlaparimala/second-wave:latest .
 
-      - name: Tag and push images
-        run: |
-          CUSTOM_TAGS="${{ github.event.inputs.custom_tags }}"
-          if [ -z "$CUSTOM_TAGS" ]; then
-            CUSTOM_TAGS="0.1.1"
-          fi
-          IFS=',' read -ra TAGS <<< "$CUSTOM_TAGS"
-
-          for TAG in "${TAGS[@]}"; do
-            docker tag second-wave:latest nadigatlaparimala/second-wave:$TAG
-            docker push nadigatlaparimala/second-wave:$TAG
-          done
+      - name: Push Docker image
+        run: docker push nadigatlaparimala/second-wave:latest
