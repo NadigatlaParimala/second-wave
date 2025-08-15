@@ -7,6 +7,10 @@ const About = () => {
         </h2>
         <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
           <p>
+            Hi These are the new changes for this website
+          </p>
+          
+          <p>
             The second wave of coffee represents a pivotal moment when coffee transformed 
             from a commodity to a craft. It's about understanding the origin, the process, 
             and the artistry behind every cup.
