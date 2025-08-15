@@ -8,11 +8,6 @@ pipeline {
     FULL_IMAGE              = "nadigatlaparimala/second-wave:latest"
   }
 
-  options {
-    timestamps()
-    disableConcurrentBuilds()
-  }
-
   stages {
     stage('Checkout') {
       steps {
