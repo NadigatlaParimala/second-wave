@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'docker' } // or 'any' if Docker CLI is available on the node
+  agent any // or 'any' if Docker CLI is available on the node
 
   environment {
     DOCKERHUB_NAMESPACE     = 'nadigatlaparimala'
@@ -11,11 +11,6 @@ pipeline {
   options {
     timestamps()
     disableConcurrentBuilds()
-  }
-
-  triggers {
-    // For classic Pipeline jobs, you can use SCM polling if you don't set a webhook:
-    // pollSCM('H/2 * * * *')  // every ~2 minutes (optional)
   }
 
   stages {
